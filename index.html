@@ -32,37 +32,37 @@ http://youtu.be/TtMHhqrYf90
 
 	var counter = 0;
 	var timerID = null;
-	$("#displayArea").on('click', increaseCounter/*give the click handler a function that will increase the counter*/);
-	$("#displayArea").on('mouseout',handleMouseout);
+	$("#displayArea").on('click', increaseCounter/*give the click handler a function that will increase the counter*/); // X
+	$("#displayArea").on('mouseout',handleMouseout); // X
 	$("#displayArea").on('mouseover',handleMouseover);
 
 
 
 	function increaseCounter(){
 		counter++;
-	  //increase the counter global variable by 1, then save the value back into counter
-	  
-	  updateDisplay();
-	  //call the function that updates the span in the displayArea div
+	  	//increase the counter global variable by 1, then save the value back into counter
+	  	updateDisplay();
+	  	//call the function that updates the span in the displayArea div
 	}
 
 	function decreaseCounter(){
-	  	if(var counter <= 0){
-  			handleMouseover(); 
-  		}
-}//if the counter global variable is less than or equal to 0
+	  	//if the counter global variable is less than or equal to 0
 	    //call the handleMouseover function
-	    //set the counter global variable to 0
-	    //exit the function
-	  }
-	  counter--;
+	  	if (counter <= 0){
+  			handleMouseover(); 
+  		//set the counter global variable to 0
+  			counter = 0;
+  		//exit the function - this is one way to exit a function - the other is a "break"
+  			return;
+  		}
+		counter--;
 	  //decrease the counter by one, and save the result back into the counter variable
 	  updateDisplay();
 	  //call the updateDisplay function
 	}
 
 	function updateDisplay(){
-		$('#displayArea').text
+		$('#displayArea').text(counter);
 	  //change the text of the span inside the div.  
 	  //The div has an id of displayArea.  
 	  //The text will be changed to the value currently inside the global variable of counter
@@ -70,7 +70,8 @@ http://youtu.be/TtMHhqrYf90
 
 	function handleMouseout()
 	{
-		setInterval(decreaseCounter, 500);
+		timerID = setInterval(decreaseCounter, 500);
+
 	  //call the setInterval function (it is a default function, not one defined here).  
 	  //pass in the following 2 parameters: the name of the function that decreases the counter, and 500.   setInterval returns a value, save that value in the global variable "timerID"
 	}
